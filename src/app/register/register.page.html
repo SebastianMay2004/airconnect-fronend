@@ -4,10 +4,68 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" class="ion-padding">
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">Register</ion-title>
     </ion-toolbar>
   </ion-header>
+
+  <div class="register-container">
+    <ion-list>
+      <ion-item>
+        <ion-input
+          label="Username"
+          labelPlacement="floating"
+          type="text"
+          placeholder="Introduce tu usuario"
+        >
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input
+          label="Email"
+          labelPlacement="floating"
+          type="email"
+          placeholder="Introduce tu email"
+        >
+        </ion-input>
+
+      </ion-item>
+      <ion-item>
+
+        <ion-input
+          label="Password"
+          labelPlacement="floating"
+          type="password"
+          placeholder="********"
+        >
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input
+          label="Confirm Password"
+          labelPlacement="floating"
+          type="password"
+          placeholder="********"
+        >
+        </ion-input>
+      </ion-item>
+
+      <ion-button expand="block" class="ion-margin-top">
+        Registrarse
+      </ion-button>
+
+      <ion-button routerLink="/login" expand="block" class="ion-margin-top">
+        Volver al Login   
+      </ion-button>
+
+
+    </ion-list>
+
+  </div>
+
+
+
 </ion-content>
