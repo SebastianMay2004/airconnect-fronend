@@ -1,0 +1,7 @@
+{
+  "name": "airconnect",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
