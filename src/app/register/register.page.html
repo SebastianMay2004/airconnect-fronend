@@ -7,7 +7,7 @@
 <ion-content [fullscreen]="true" class="ion-padding">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Register</ion-title>
+      <ion-title size="large">Registro de Usuario</ion-title>
     </ion-toolbar>
   </ion-header>
 
@@ -15,9 +15,10 @@
     <ion-list>
       <ion-item>
         <ion-input
-          label="Username"
+          label="Usuario"
           labelPlacement="floating"
           type="text"
+          [(ngModel)]="user.username"
           placeholder="Introduce tu usuario"
         >
         </ion-input>
@@ -28,6 +29,7 @@
           labelPlacement="floating"
           type="email"
           placeholder="Introduce tu email"
+          [(ngModel)]="user.email"
         >
         </ion-input>
 
@@ -35,25 +37,27 @@
       <ion-item>
 
         <ion-input
-          label="Password"
+          label="Contraseña"
           labelPlacement="floating"
           type="password"
           placeholder="********"
+          [(ngModel)]="user.password"
         >
         </ion-input>
       </ion-item>
 
       <ion-item>
         <ion-input
-          label="Confirm Password"
+          label="Confirmar contraeña"
           labelPlacement="floating"
           type="password"
           placeholder="********"
+          [(ngModel)]="user.confirmPassword"
         >
         </ion-input>
       </ion-item>
 
-      <ion-button expand="block" class="ion-margin-top">
+      <ion-button expand="block" class="ion-margin-top" (click)="registro()">
         Registrarse
       </ion-button>
 
