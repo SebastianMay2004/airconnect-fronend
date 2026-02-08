@@ -24,5 +24,9 @@ export const routes: Routes = [
   {
     path: 'support',
     loadComponent: () => import('./support/support.page').then( m => m.SupportPage)
+  },
+  {
+    path: 'forget-password',
+    loadComponent: () => import('./forget-password/forget-password.page').then( m => m.ForgetPasswordPage)
   }
 ];
