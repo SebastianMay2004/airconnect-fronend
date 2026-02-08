@@ -5,6 +5,8 @@ import { MenuComponent } from '../menu/menu.component';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonFab, IonFabButton, IonIcon,IonFabList, IonButtons, IonMenuButton } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import {add,headset, chatbubble,help} from 'ionicons/icons';
+import { RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 
 
 addIcons({add, headset,chatbubble,help});
@@ -19,7 +21,10 @@ addIcons({add, headset,chatbubble,help});
 })
 export class MainPage implements OnInit {
 
-  constructor() {
+  constructor(private router: Router) { }
+
+  goToSupport() {
+    this.router.navigate(['/support']);
     
    }
 

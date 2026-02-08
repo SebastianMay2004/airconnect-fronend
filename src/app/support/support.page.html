@@ -1,0 +1,39 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/main"></ion-back-button>
+    </ion-buttons>
+    <ion-title>support</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Soporte Técnico</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-list>
+    <ion-item>
+      <ion-select label="¿Cuál es su problema?" placeholder="Seleccione una opción">
+        //ntc: No vincula el dipositivo
+        //ncd: No enciendo el dipositivo
+        //otros 
+        <ion-select-option value="ntc">No vincula el dipositivo</ion-select-option>
+        <ion-select-option value="ncd">No enciendo el dipositivo</ion-select-option>
+        <ion-select-option value="other">Otros</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-textarea label="Descripción del problema" placeholder="Describa su problema con el dispositivo" rows="10" labelPlacement="stacked"></ion-textarea>
+    </ion-item>
+  </ion-list>
+  <ion-button expand="block" class="ion-margin-top">Enviar</ion-button>
+
+  <p>
+    Por favor escribe los detalles de tu problema, y en breve nos comunicaremos contigo a través de nuestro correo oficial soporteairconnect@gmail.com para brindarte la asistencia necesaria. Asegúrate de incluir toda la información relevante para que podamos ayudarte de la mejor manera posible. ¡Gracias por confiar en nuestro soporte técnico!
+  </p>
+
+
+</ion-content>

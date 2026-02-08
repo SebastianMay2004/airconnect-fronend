@@ -20,5 +20,9 @@ export const routes: Routes = [
   {
     path: 'main',
     component: MainPage,
+  },
+  {
+    path: 'support',
+    loadComponent: () => import('./support/support.page').then( m => m.SupportPage)
   }
 ];
