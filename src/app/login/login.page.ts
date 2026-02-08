@@ -20,7 +20,7 @@ export class LoginPage implements OnInit {
   login(){
     // Aquí puedes agregar la lógica de autenticación, como verificar las credenciales del usuario
     // Por ahora, simplemente redirigiremos al usuario a la página principal después de hacer clic en el botón de inicio de sesión
-    this.router.navigate(['/main']);
+    this.router.navigateByUrl('/main');
   }
 
   ngOnInit() {
