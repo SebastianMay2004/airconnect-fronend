@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { ModalController, IonHeader, IonToolbar, IonTitle, IonButtons, IonButton, IonContent } from '@ionic/angular/standalone';
+import { ModalController, IonHeader, IonToolbar, IonTitle, IonButton, IonContent } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-terminos',
   standalone: true,
-  imports: [IonHeader, IonToolbar, IonTitle, IonButtons, IonButton, IonContent],
+  imports: [IonHeader, IonToolbar, IonTitle , IonButton, IonContent],
   template: `
     <ion-header>
       <ion-toolbar>
@@ -12,7 +12,8 @@ import { ModalController, IonHeader, IonToolbar, IonTitle, IonButtons, IonButton
       </ion-toolbar>
     </ion-header>
     <ion-content class="ion-padding">
-      <p>Última actualización: 31 de marzo de 2025.
+      <p>
+Última actualización: 31 de marzo de 2025.
 Bienvenido(a) a AirConnect. Antes de utilizar nuestra aplicación, te pedimos que leas atentamente los siguientes términos y condiciones. Al acceder y utilizar nuestra plataforma, aceptas cumplir con estos términos. Si no estás de acuerdo con ellos, te recomendamos no usar la aplicación.
 1. Definiciones
 Aplicación: Software desarrollado para el monitoreo y control de calidad del aire en cocinas, restaurantes y hoteles.
@@ -40,7 +41,9 @@ No somos responsables por daños derivados del uso incorrecto de la información
 Nos reservamos el derecho de actualizar estos términos en cualquier momento.
 Te notificaremos sobre cambios importantes a través de la aplicación o por correo electrónico.
 8. Contacto
-Si tienes preguntas sobre estos términos, puedes contactarnos en Soporte.</p>
+Si tienes preguntas sobre estos términos, puedes contactarnos en Soporte.
+
+</p>
       <ion-button expand="full" (click)="aceptar()">Aceptar</ion-button>
       <ion-button expand="full" color="light" (click)="cancelar()">Cerrar</ion-button>
     </ion-content>
