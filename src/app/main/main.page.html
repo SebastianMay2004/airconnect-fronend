@@ -1,0 +1,45 @@
+<app-menu></app-menu>
+
+<div class="ion-page" id="main-content">
+  
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons> 
+      <ion-title>Main</ion-title>
+    </ion-toolbar>
+  </ion-header>  
+
+
+  <ion-content>
+ <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+  <ion-fab-button>
+    <ion-icon name="add"></ion-icon>
+  </ion-fab-button>
+
+  <ion-fab-list side="top">
+    <ion-fab-button color="secondary">
+      <ion-icon name="headset"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-button color="tertiary" (click)="goToSupport()">
+      <ion-icon name="chatbubble"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-button color="primary">
+      <ion-icon name="help"></ion-icon>
+    </ion-fab-button>
+  </ion-fab-list>
+</ion-fab>
+
+
+</ion-content>
+
+
+
+
+
+</div>
+
+
+
+

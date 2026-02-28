@@ -1,0 +1,64 @@
+// Contenedor principal para ocupar toda la pantalla
+.login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; // Centra verticalmente
+  height: 100%;           // Ocupa el alto del ion-content
+  max-width: 400px;       // Limita el ancho en tablets/web
+  margin: 0 auto;         // Centra horizontalmente el bloque
+  min-height: 100%;      // Asegura que el contenedor siempre ocupe toda la altura disponible
+  padding: 20px;         // Espaciado interno para que no quede pegado a los bordes
+
+}
+
+// Estilo para el grupo de inputs
+.input-container {
+  background: #E3E7F1; // Fondo sutil
+  border-radius: 12px;                // Bordes redondeados
+  padding: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); // Sombra suave
+  margin-bottom: 10px;
+  margin-top: -55px;
+  
+
+  ion-list {
+    background: transparent; // Quita el fondo blanco por defecto de la lista
+  }
+
+  ion-item {
+    --border-style: none;     // Quita las líneas divisorias si prefieres un look limpio
+    --background: transparent;
+  }
+}
+
+// Botones de acción principal (Entrar / Registrarse)
+ion-button[expand="block"] {
+  --border-radius: 10px;      // Botones más modernos
+  height: 50px;               // Un poco más altos para facilitar el tap
+  font-weight: 600;
+  margin-top: 15px;
+}
+
+// Botones de "Olvidé mi..." (fill="clear")
+ion-button[fill="clear"] {
+  --color: var(--ion-color-medium); // Color grisáceo para que no distraigan
+  font-size: 0.9rem;
+  text-transform: none;             // Quita las mayúsculas automáticas
+}
+
+ion-content {
+  --background: #C5E1F8; // Fondo azul claro para un look fresco
+}
+ion-toolbar {
+  --background: transparent;
+  --color: #3673B5;
+}
+
+ion-title {
+  font-size: 24px !important;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-align: center;
+  width: 100%;
+}
