@@ -12,30 +12,71 @@
   </ion-header>  
 
 
+
+<!--Aquí va el contenido principal de la página, para no perderme xd-->
   <ion-content>
+<!-- grafica xd-->
+<ion-card>
+  <ion-card-header>
+    <ion-card-title>Calidad del aire</ion-card-title>
+  </ion-card-header>
+
+  <ion-card-content>
+    <div class="chart-container">
+      <canvas #grafica></canvas>
+    </div>
+  </ion-card-content>
+</ion-card>
+
+<ion-card>
+  <ion-card-header>
+    <ion-card-title>Dispositivos</ion-card-title>
+  </ion-card-header>
+
+  <ion-card-content>
+    <ion-list>
+      <ion-item *ngFor="let dispositivo of dipositivos" >
+        <ion-thumbnail slot="start">
+          <img [src]="dispositivo.img" alt="Imagen del dispositivo">
+        </ion-thumbnail>
+        <ion-label>
+          <h2>{{ dispositivo.nombre }}</h2>
+          <p>Estado: Conectado</p>
+    
+          <p (click)="goToSupport()" color="primary">Opciones....</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-card-content>
+</ion-card>
+
+
+
+
+<!--el botoncito xd -->
+
+
+
+</ion-content>
+
+
  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
   <ion-fab-button>
     <ion-icon name="add"></ion-icon>
   </ion-fab-button>
 
-  <ion-fab-list side="top">
-    <ion-fab-button color="secondary">
-      <ion-icon name="headset"></ion-icon>
-    </ion-fab-button>
+  <ion-fab-list aria-label="Soporte" side="top" >
     <ion-fab-button color="tertiary" (click)="goToSupport()">
       <ion-icon name="chatbubble"></ion-icon>
     </ion-fab-button>
     <ion-fab-button color="primary">
       <ion-icon name="help"></ion-icon>
     </ion-fab-button>
+    <ion-fab-button color ="success">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
   </ion-fab-list>
 </ion-fab>
-
-
-</ion-content>
-
-
-
 
 
 </div>
