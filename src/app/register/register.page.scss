@@ -14,7 +14,7 @@
     border-radius: 12px;                // Bordes redondeados
     padding: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); // Sombra suave
-    margin-bottom: 40px;
+    margin-bottom: 15px;
     margin-top: 10px;
 
     
@@ -49,4 +49,13 @@ ion-toolbar{
 ion-title{
     font-size: 24px !important;
     font-weight: 700;
+}
+
+
+ion-img{
+  width: 220px;
+  height: 150px;
+  margin: 0 auto auto; // Centra la imagen y agrega espacio debajo
+  border-radius: 15px; // Bordes redondeados para un look más amigable
+  margin-bottom: -110px; // Ajusta el espacio entre la imagen y el contenedor de inputs
 }

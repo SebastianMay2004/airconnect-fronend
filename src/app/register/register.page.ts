@@ -5,7 +5,7 @@ import { RouterLink } from '@angular/router';
 import { Router } from '@angular/router';
 import { Auth } from '../services/auth';
 // Importa el ModalController
-import { ModalController, IonContent, IonHeader, IonTitle, IonToolbar, IonInput, IonButton, IonItem, IonList, IonIcon, AlertController} from '@ionic/angular/standalone';
+import { ModalController, IonContent, IonHeader, IonTitle, IonToolbar, IonInput, IonButton, IonItem, IonList, IonIcon, AlertController, IonImg} from '@ionic/angular/standalone';
 // Importa el componente que quieres mostrar
 import { TerminosComponent } from '../terminos/terminos.component';
 import { addIcons } from 'ionicons';
@@ -20,12 +20,13 @@ addIcons({
   templateUrl: './register.page.html',
   styleUrls: ['./register.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonInput, IonButton, IonItem, IonList, IonIcon, RouterLink,]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonInput, IonButton, IonItem, IonList, IonIcon, RouterLink,IonImg]
 })
 export class RegisterPage implements OnInit {
 
   // Inyectamos el controlador, NO el componente de términos
-  constructor(private modalCtrl: ModalController, private router: Router, private authService: Auth,private alertController:AlertController) { }
+  constructor(private modalCtrl: ModalController, private router: Router, private authService: Auth,private alertController:AlertController) {
+      addIcons({personCircle,mail,lockClosed,repeat}); }
 
   user ={
     name: '',

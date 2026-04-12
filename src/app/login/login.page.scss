@@ -18,7 +18,7 @@
   padding: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); // Sombra suave
   margin-bottom: 10px;
-  margin-top: -55px;
+  margin-top: -300px;
   
 
   ion-list {
@@ -30,13 +30,23 @@
     --background: transparent;
   }
 }
+ion-img{
+  width: 250px;
+  height: 150px;
+  margin: 0 auto auto; // Centra la imagen y agrega espacio debajo
+  border-radius: 15px; // Bordes redondeados para un look más amigable
+  margin-bottom: 5  px; // Ajusta el espacio entre la imagen y el contenedor de inputs
+
+}
+
+
 
 // Botones de acción principal (Entrar / Registrarse)
 ion-button[expand="block"] {
   --border-radius: 10px;      // Botones más modernos
   height: 50px;               // Un poco más altos para facilitar el tap
   font-weight: 600;
-  margin-top: 15px;
+  margin-top: 5px;
 }
 
 // Botones de "Olvidé mi..." (fill="clear")

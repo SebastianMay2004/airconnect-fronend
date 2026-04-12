@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { Router } from '@angular/router';
 import { IonContent, IonHeader, IonTitle, IonToolbar, AlertController } from '@ionic/angular/standalone';
-import { IonButton,IonInput,IonList,IonItem,IonIcon } from '@ionic/angular/standalone';
+import { IonButton,IonInput,IonList,IonItem,IonIcon,IonImg } from '@ionic/angular/standalone';
 import { Auth } from '../services/auth';
 import { addIcons } from 'ionicons';
 import { personCircle,mail, lockClosed } from 'ionicons/icons';
@@ -18,11 +18,12 @@ addIcons({
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton, IonInput, IonList,IonItem, RouterLink,IonIcon,]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton, IonInput, IonList,IonItem, RouterLink,IonIcon,IonImg]
 })
 export class LoginPage implements OnInit {
 
-  constructor(private router: Router, private authService: Auth, private alertController: AlertController) { }
+  constructor(private router: Router, private authService: Auth, private alertController: AlertController) {
+      addIcons({mail,lockClosed}); }
 
   async presentAlert(message: string) {
     const alert = await this.alertController.create({
@@ -55,6 +56,7 @@ export class LoginPage implements OnInit {
       next: (res) => {
         console.log('Login exitoso:', res);
         this.authService.saveToken(res.access_token);
+        
         this.router.navigateByUrl('/main');
       },
       error: (err) => {

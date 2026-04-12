@@ -2,7 +2,7 @@ import { Component, OnInit, viewChild, AfterViewInit,ElementRef,ViewChild  } fro
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MenuComponent } from '../menu/menu.component';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonFab, IonFabButton, IonIcon,IonFabList, IonButtons, IonMenuButton, IonCardContent, IonCard, IonCardHeader, IonCardTitle, IonList, IonLabel, IonItem, IonThumbnail} from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonFab, IonFabButton, IonIcon,IonFabList, IonButtons, IonMenuButton, IonCardContent, IonCard, IonCardHeader, IonCardTitle, IonList, IonLabel, IonItem, IonThumbnail,IonGrid, IonRow,IonCol, IonBadge, IonSelect,IonSelectOption} from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import {add,headset, chatbubble,help} from 'ionicons/icons';
 import { RouterLink } from '@angular/router';
@@ -21,7 +21,7 @@ Chart.register(...registerables);
   templateUrl: './main.page.html',
   styleUrls: ['./main.page.scss'],
   standalone: true,
-  imports: [MenuComponent,IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonFab,IonFabButton,IonIcon,IonFabList,IonButtons, IonMenuButton, IonCardContent,IonCard, IonCardHeader, IonCardTitle, IonList, IonLabel,IonItem,IonThumbnail]
+  imports: [MenuComponent,IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonFab,IonFabButton,IonIcon,IonFabList,IonButtons, IonMenuButton, IonCardContent,IonCard, IonCardHeader, IonCardTitle, IonList, IonLabel,IonItem,IonThumbnail,IonGrid, IonRow,IonCol, IonBadge,IonSelect,IonSelectOption]
 })
 export class MainPage implements OnInit {
   dipositivos =[
@@ -30,6 +30,13 @@ export class MainPage implements OnInit {
     img: 'assets/img/arduino.webp'
   }
 ];
+
+sensores = [
+    { nombre: 'Sensor de CO2 - Cocina', valor: '450 ppm', estado: 'bueno' },
+    { nombre: 'Sensor Partículas - Hall', valor: '12 μg/m3', estado: 'bueno' },
+    { nombre: 'Humedad - Almacén', valor: '85%', estado: 'critico' },
+    { nombre: 'Calidad Aire - Comedor', valor: '900 ppm', estado: 'critico' }
+  ];
   
 
   constructor(private router: Router) {
@@ -110,6 +117,14 @@ export class MainPage implements OnInit {
     this.router.navigate(['/support']);
     
    }
+
+
+   navegar(event: any) {
+    const url = event.target.value;
+    if (url) {
+      this.router.navigate([url]);
+    }
+  }
 
   ngOnInit() {
   }
