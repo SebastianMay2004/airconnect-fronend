@@ -7,115 +7,147 @@
       <ion-buttons slot="start">
         <ion-menu-button></ion-menu-button>
       </ion-buttons> 
-      <ion-title>Main</ion-title>
+      <ion-title>AirConnect Monitor</ion-title>
+      <ion-buttons slot="end">
+        <ion-button (click)="logout()">
+          <ion-icon name="log-out" slot="icon-only"></ion-icon>
+        </ion-button>
+      </ion-buttons>
     </ion-toolbar>
-  </ion-header>  
+  </ion-header>
 
-
-
-<!--Aquí va el contenido principal de la página, para no perderme xd-->
   <ion-content>
-<!-- grafica xd-->
- <!--
-<ion-card>
+    <!-- Pull to refresh -->
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+
+    <!-- Loading -->
+    <div *ngIf="isLoading" class="ion-text-center ion-padding">
+      <ion-spinner name="crescent"></ion-spinner>
+      <p>Cargando datos del sensor...</p>
+    </div>
+
+    <!-- Error -->
+    <ion-card *ngIf="errorMessage && !isLoading" color="danger">
+      <ion-card-content>
+        {{ errorMessage }}
+        <ion-button (click)="cargarDatos()" size="small">Reintentar</ion-button>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Última Lectura -->
+    <ion-card *ngIf="ultimaLectura && !isLoading">
+      <ion-card-header>
+        <ion-card-title>Última Lectura</ion-card-title>
+        <ion-card-subtitle>Datos en tiempo real</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col size="6">
+              <ion-item lines="none">
+                <ion-label>
+                  <h3>MQ135</h3>
+                  <p>{{ ultimaLectura.aire_mq135 || '--' }} ppm</p>
+                </ion-label>
+              </ion-item>
+            </ion-col>
+            <ion-col size="6">
+              <ion-item lines="none">
+                <ion-label>
+                  <h3>MQ7</h3>
+                  <p>{{ ultimaLectura.co_mq7 || '--' }} ppm</p>
+                </ion-label>
+              </ion-item>
+            </ion-col>
+            <ion-col size="6">
+              <ion-item lines="none">
+                <ion-label>
+                  <h3>Temperatura</h3>
+                  <p>{{ ultimaLectura.temperatura || '--' }} °C</p>
+                </ion-label>
+              </ion-item>
+            </ion-col>
+            <ion-col size="6">
+              <ion-item lines="none">
+                <ion-label>
+                  <h3>Humedad</h3>
+                  <p>{{ ultimaLectura.humedad || '--' }}%</p>
+                </ion-label>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Gráfica -->
+    <ion-card>
   <ion-card-header>
     <ion-card-title>Calidad del aire</ion-card-title>
   </ion-card-header>
-
   <ion-card-content>
     <div class="chart-container">
       <canvas #grafica></canvas>
     </div>
   </ion-card-content>
 </ion-card>
--->
-<ion-card>
-  <ion-card-header>
-    <ion-card-title>Dispositivos</ion-card-title>
-  </ion-card-header>
 
-  <ion-card-content>
-    <ion-list>
-      <ion-item *ngFor="let dispositivo of dipositivos" >
-        <ion-thumbnail slot="start">
-          <img [src]="dispositivo.img" alt="Imagen del dispositivo">
-        </ion-thumbnail>
-        <ion-label>
-          <h2>{{ dispositivo.nombre }}</h2>
-          <p>Estado: Conectado</p>
-          <div class="ion-padding">
+    <!-- Sensores -->
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Dispositivos</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list>
+          <ion-item *ngFor="let dispositivo of dispositivos">
+            <ion-thumbnail slot="start">
+              <img [src]="dispositivo.img" alt="Imagen del dispositivo">
+            </ion-thumbnail>
+            <ion-label>
+              <h2>{{ dispositivo.nombre }}</h2>
+              <p>Estado: {{ dispositivo.conectado ? 'Conectado' : 'Desconectado' }}</p>
+            </ion-label>
+          </ion-item>
           
-        <ion-item lines="outline" lines="none">
-          <ion-select
-          label="Opciones..."
-          interface="popover"
-          placeholder="Seleccione una opción"
-          (ionChange)="navegar($event)"
-          >
+          <ion-item lines="none">
+            <ion-grid>
+              <ion-row style="border-bottom: 2px solid #ccc; font-weight: bold;">
+                <ion-col size="4">Sensor</ion-col>
+                <ion-col size="3">Valor</ion-col>
+                <ion-col size="5">Estado</ion-col>
+              </ion-row>
+              <ion-row *ngFor="let sensor of sensores">
+                <ion-col size="4">{{ sensor.nombre }}</ion-col>
+                <ion-col size="3">{{ sensor.valor }} {{ sensor.unidad }}</ion-col>
+                <ion-col size="5">
+                  <ion-badge [color]="sensor.estado === 'bueno' ? 'success' : (sensor.estado === 'regular' ? 'warning' : 'danger')">
+                    {{ sensor.estado === 'bueno' ? 'Bueno' : (sensor.estado === 'regular' ? 'Regular' : 'Crítico') }}
+                  </ion-badge>
+                  <p><small>{{ sensor.limite }}</small></p>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
 
-          <ion-select-option>Historial</ion-select-option>
-          <ion-select-option>Descargar PDF</ion-select-option>
+  </ion-content>
 
-          </ion-select>
-
-         </ion-item>
-          </div>
-          
-        </ion-label>
-      </ion-item>
-      <ion-item>
-        <ion-grid>
-          <ion-row style="border-bottom: 2px solid #ccc; font-weight: bold;">
-            <ion-col>sensor</ion-col>
-            <ion-col>valor</ion-col>
-            <ion-col>estado</ion-col>
-          </ion-row>
-          <ion-row *ngFor="let sensor of sensores">
-            <ion-col>{{ sensor.nombre }}</ion-col>
-            <ion-col>{{ sensor.valor }}</ion-col>
-            <ion-col>
-              <ion-badge [color]="sensor.estado === 'bueno' ? 'success' : 'danger'">
-                {{ sensor.estado }}
-              </ion-badge>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-item>
-    </ion-list>
-  </ion-card-content>
-</ion-card>
-
-
-
-
-<!--el botoncito xd -->
-
-
-
-</ion-content>
-
-
- <ion-fab slot="fixed" vertical="bottom" horizontal="end">
-  <ion-fab-button>
-    <ion-icon name="add"></ion-icon>
-  </ion-fab-button>
-
-  <ion-fab-list aria-label="Soporte" side="top" >
-    <ion-fab-button color="tertiary" (click)="goToSupport()">
-      <ion-icon name="chatbubble"></ion-icon>
-    </ion-fab-button>
-    <ion-fab-button color="primary">
-      <ion-icon name="help"></ion-icon>
-    </ion-fab-button>
-    <ion-fab-button color ="success">
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button>
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
-  </ion-fab-list>
-</ion-fab>
-
+    <ion-fab-list side="top">
+      <ion-fab-button color="tertiary" (click)="goToSupport()">
+        <ion-icon name="chatbubble"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button color="primary" (click)="cargarDatos()">
+        <ion-icon name="refresh"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
 
 </div>
-
-
-
-
