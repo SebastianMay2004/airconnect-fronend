@@ -63,24 +63,24 @@
           
         </ion-label>
       </ion-item>
-      <ion-item>
-        <ion-grid>
-          <ion-row style="border-bottom: 2px solid #ccc; font-weight: bold;">
-            <ion-col>sensor</ion-col>
-            <ion-col>valor</ion-col>
-            <ion-col>estado</ion-col>
-          </ion-row>
-          <ion-row *ngFor="let sensor of sensores">
-            <ion-col>{{ sensor.nombre }}</ion-col>
-            <ion-col>{{ sensor.valor }}</ion-col>
-            <ion-col>
-              <ion-badge [color]="sensor.estado === 'bueno' ? 'success' : 'danger'">
-                {{ sensor.estado }}
-              </ion-badge>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-item>
+<ion-item>
+  <ion-grid>
+    <ion-row style="border-bottom: 2px solid #ccc; font-weight: bold;">
+      <ion-col>Aire (MQ135)</ion-col>
+      <ion-col>CO (MQ7)</ion-col>
+      <ion-col>Gas (MQ2)</ion-col>
+      <ion-col>Temp</ion-col>
+      <ion-col>Hum</ion-col>
+    </ion-row>
+  <ion-row *ngIf="lecturas$ | async as dato">
+  <ion-col>{{ dato.co2_mq135 }}</ion-col>
+  <ion-col>{{ dato.co_mq7 }}</ion-col>
+  <ion-col>{{ dato.glp_mq2 }}</ion-col>
+  <ion-col>{{ dato.temperatura }}°C</ion-col>
+  <ion-col>{{ dato.humedad }}%</ion-col>
+</ion-row>
+  </ion-grid>
+</ion-item>
     </ion-list>
   </ion-card-content>
 </ion-card>

@@ -8,6 +8,14 @@ import {add,headset, chatbubble,help} from 'ionicons/icons';
 import { RouterLink } from '@angular/router';
 import { Router } from '@angular/router';
 import { Chart,registerables } from 'chart.js';
+import {Database,ref,listVal,query,limitToLast} from '@angular/fire/database';  
+import { from, Observable, timer } from 'rxjs';
+import { map, switchMap,distinctUntilChanged } from 'rxjs/operators';
+import { scan } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
+import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
+
+    provideFirebaseApp(() => initializeApp(environment)),
 
 
 addIcons({add, headset,chatbubble,help});
@@ -24,6 +32,8 @@ Chart.register(...registerables);
   imports: [MenuComponent,IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonFab,IonFabButton,IonIcon,IonFabList,IonButtons, IonMenuButton, IonCardContent,IonCard, IonCardHeader, IonCardTitle, IonList, IonLabel,IonItem,IonThumbnail,IonGrid, IonRow,IonCol, IonBadge,IonSelect,IonSelectOption]
 })
 export class MainPage implements OnInit {
+
+lecturas$: Observable<any>;
   dipositivos =[
   {
     nombre: 'equipo 1',
@@ -31,15 +41,24 @@ export class MainPage implements OnInit {
   }
 ];
 
-sensores = [
-    { nombre: 'Sensor de CO2 - Cocina', valor: '450 ppm', estado: 'bueno' },
-    { nombre: 'Sensor Partículas - Hall', valor: '12 μg/m3', estado: 'bueno' },
-    { nombre: 'Humedad - Almacén', valor: '85%', estado: 'critico' },
-    { nombre: 'Calidad Aire - Comedor', valor: '900 ppm', estado: 'critico' }
-  ];
-  
+  constructor(private router: Router, private db: Database) {
 
-  constructor(private router: Router) {
+    
+    //ESTO ES PARA LOS SENSORES XDDDDDDDDD
+  const lecturasRef = ref(this.db, 'lecturas');
+  // Mantenemos el límite al último para no saturar la memoria
+  const lecturasQuery = query(lecturasRef, limitToLast(1));
+
+  // Quitamos el timer y el switchMap
+  this.lecturas$ = listVal(lecturasQuery).pipe(
+    map(lecturas => lecturas && lecturas.length > 0 ? lecturas[0] : null),
+    scan((prev: any, curr: any) => curr ?? prev, null)
+  );
+
+
+
+
+    
       addIcons({add,chatbubble,help,headset}); }
   @ViewChild('grafica') canvas!: ElementRef<HTMLCanvasElement>;
 

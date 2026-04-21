@@ -11,8 +11,8 @@ export class Auth {
 
 
   //este es el de la maquina virtual, para acceder al localhost del host xddddddddddd cambielo cuando lo haga servidor
-  private apiUrl = 'http://10.0.2.2:8000/api';
-  //private apiUrl = 'http://127.0.0.1:8000/api';
+  //private apiUrl = 'http://10.0.2.2:8000/api';
+  private apiUrl = 'http://127.0.0.1:8000/api';
   //private apiUrl = 'http://192.168.1.11:8000/api';
 
   constructor(private http: HttpClient) {}
